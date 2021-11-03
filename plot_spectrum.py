@@ -6,7 +6,7 @@ sns.set_style('ticks')
 
 import utils
 
-transit_depth = 5000 # ppm
+transit_depth = 6797 # ppm
 delta_j = 5.5
 
 # Compute spectrum of target:

@@ -507,3 +507,20 @@ def scale_spectrum(w, f, jmag):
     scaling_factor = 10**(-((jmag + 2.5 * np.log10(target_weighted_flux) - ZP) / 2.5))
 
     return f * scaling_factor
+
+def bin_data(x, y, yerr, n_bin):
+
+    x_bins = []
+    y_bins = []
+    y_err_bins = []
+
+    for i in range(0,len(x),n_bin):
+
+        x_bins.append(np.median(x[i:i+n_bin-1]))
+
+        y_bins.append(np.median(y[i:i+n_bin-1]))
+
+        errors_in_bin = yerr[i:i+n_bin-1]
+        y_err_bins.append( np.sqrt(np.sum(errors_in_bin ** 2)) / len(errors_in_bin) )
+
+    return np.array(x_bins),np.array(y_bins),np.array(y_err_bins)
